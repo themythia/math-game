@@ -16,6 +16,7 @@ const StatsWrapper = ({ children }) => {
       correctAnswers: 0,
       tour: 0,
     },
+    questions: [],
   };
   const [stats, dispatch] = useReducer(statsReducer, initialStats);
 
