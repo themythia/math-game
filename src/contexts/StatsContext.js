@@ -22,7 +22,7 @@ const StatsWrapper = ({ children }) => {
   // sets localStorage on first visit,
   // gets stats from localStorage if visited before
   useEffect(() => {
-    if (Object.keys(JSON.parse(localStorage.getItem('stats'))).length === 0) {
+    if (!localStorage.stats) {
       localStorage.setItem('stats', JSON.stringify(initialStats.total));
     } else
       dispatch({
