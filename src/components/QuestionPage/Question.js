@@ -5,33 +5,21 @@ import { StatsContext } from '../../contexts/StatsContext';
 import useWindowSize from '../../hooks/useWindowSize';
 import Stats from '../StartPage/Stats';
 import AnswerButton from './AnswerButton';
+
 const Question = () => {
   const { questionId } = useParams();
-  const { stats, dispatch } = useContext(StatsContext);
-  const { width, height } = useWindowSize();
+  const { stats } = useContext(StatsContext);
+  const { width } = useWindowSize();
   const question = stats.questions[questionId - 1];
-  const answer = question.multipliers[0] * question.multipliers[1];
   const [clicked, setClicked] = useState(false);
 
   useEffect(() => setClicked(false), [questionId]);
-
-  const handleTextSize = (width) => {
-    if (width >= 1024 && width < 1300) return 'text-90 bottom-[65%] left-[5%]';
-    else if (width >= 1920) return 'text-128 bottom-[75%] left-[8%]';
-    else if (width >= 1550) return 'text-128 bottom-[73%] left-[5%]';
-    else if (width >= 1300) return 'text-128 bottom-[70%] left-[5%]';
-  };
-  useEffect(() => {
-    handleTextSize(width);
-  }, [width]);
 
   return (
     <div className='flex flex-row'>
       <div className='max-h-screen overflow-hidden'>
         <Stickman width={width / 2 || 0} className='max-h-full' />
-        <p
-          className={`relative ${handleTextSize(width)}`}
-        >{`${question.multipliers[0]} x ${question.multipliers[1]}`}</p>
+        <p className='relative text-90 bottom-[65%] left-[5%] sm:text-128 sm:bottom-[70%] sm:left-[5%] md:text-128 md:bottom-[73%] md:left-[5%] lg:text-128 lg:bottom-[75%] lg:left-[8%]'>{`${question.multipliers[0]} x ${question.multipliers[1]}`}</p>
       </div>
       <div className='flex flex-col w-1/2 p-12'>
         <Stats />
