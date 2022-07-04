@@ -1,7 +1,7 @@
 import { createContext, useEffect, useReducer, useState } from 'react';
 import statsReducer from '../reducers/statsReducer';
 
-const StatsContext = createContext();
+export const StatsContext = createContext();
 
 const StatsWrapper = ({ children }) => {
   const initialStats = {
