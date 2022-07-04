@@ -12,7 +12,6 @@ const Question = () => {
   const question = stats.questions[questionId - 1];
   const answer = question.multipliers[0] * question.multipliers[1];
   const [clicked, setClicked] = useState(false);
-  console.log('clicked', clicked);
 
   useEffect(() => setClicked(false), [questionId]);
 
@@ -23,7 +22,6 @@ const Question = () => {
     else if (width >= 1300) return 'text-128 bottom-[70%] left-[5%]';
   };
   useEffect(() => {
-    console.log('width: in effetc', width);
     handleTextSize(width);
   }, [width]);
 

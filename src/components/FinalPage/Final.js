@@ -8,15 +8,6 @@ import Results from './Results';
 const Final = () => {
   const { stats, dispatch } = useContext(StatsContext);
   const { current } = stats;
-  // useEffect(() => {
-  //   console.log('((((((((((((((((((((((EST)))))))))))))))))))');
-  //   dispatch({
-  //     type: 'UPDATE_TOTAL',
-  //     score: current.score,
-  //     questions: current.questions,
-  //     answers: current.correctAnswers,
-  //   });
-  // }, []);
   return (
     <div className='flex flex-row justify-center items-start h-screen p-4'>
       <div className='flex flex-col  items-center basis-3/5'>
