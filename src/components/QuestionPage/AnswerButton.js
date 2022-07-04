@@ -1,6 +1,6 @@
 import { ReactComponent as ButtonBorder } from '../../assets/answerButton.svg';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { StatsContext } from '../../contexts/StatsContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 

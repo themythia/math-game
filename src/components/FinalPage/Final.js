@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { StatsContext } from '../../contexts/StatsContext';
 import Button from '../shared/Button';
 import Title from '../shared/Title';
@@ -6,8 +6,7 @@ import ListItem from '../StartPage/ListItem';
 import Results from './Results';
 
 const Final = () => {
-  const { stats, dispatch } = useContext(StatsContext);
-  const { current } = stats;
+  const { stats } = useContext(StatsContext);
   return (
     <div className='flex flex-row justify-center items-start h-screen p-4'>
       <div className='flex flex-col  items-center basis-3/5'>

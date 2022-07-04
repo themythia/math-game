@@ -1,10 +1,8 @@
 import { useContext } from 'react';
 import { StatsContext } from '../../contexts/StatsContext';
-import useWindowSize from '../../hooks/useWindowSize';
 
 const Stats = () => {
   const { stats } = useContext(StatsContext);
-  const { width } = useWindowSize();
 
   return (
     <div className='flex flex-row justify-between text-3xl w-full'>

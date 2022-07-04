@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { StatsContext } from '../../contexts/StatsContext';
 import Button from '../shared/Button';
 import Title from '../shared/Title';
