@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactComponent as Stickman } from '../../assets/stickman.svg';
 import { StatsContext } from '../../contexts/StatsContext';
@@ -11,7 +11,10 @@ const Question = () => {
   const { width, height } = useWindowSize();
   const question = stats.questions[questionId - 1];
   const answer = question.multipliers[0] * question.multipliers[1];
-  console.log('width:', width);
+  const [clicked, setClicked] = useState(false);
+  console.log('clicked', clicked);
+
+  useEffect(() => setClicked(false), [questionId]);
 
   const handleTextSize = (width) => {
     if (width >= 1024 && width < 1300) return 'text-90 bottom-[65%] left-[5%]';
@@ -35,9 +38,24 @@ const Question = () => {
       <div className='flex flex-col w-1/2 p-12'>
         <Stats />
         <div className='flex flex-col w-full h-full items-center justify-center'>
-          <AnswerButton type='1' value={question.answers[0]} />
-          <AnswerButton type='2' value={question.answers[1]} />
-          <AnswerButton type='3' value={question.answers[2]} />
+          <AnswerButton
+            type='1'
+            value={question.answers[0]}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+          <AnswerButton
+            type='2'
+            value={question.answers[1]}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
+          <AnswerButton
+            type='3'
+            value={question.answers[2]}
+            clicked={clicked}
+            setClicked={setClicked}
+          />
         </div>
       </div>
     </div>

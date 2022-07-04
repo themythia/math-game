@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { StatsContext } from '../../contexts/StatsContext';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-const AnswerButton = ({ value, type }) => {
+const AnswerButton = ({ value, type, clicked, setClicked }) => {
   const { questionId } = useParams();
   const navigate = useNavigate();
 
@@ -14,6 +14,7 @@ const AnswerButton = ({ value, type }) => {
   const answer = question.multipliers[0] * question.multipliers[1];
 
   const handleClick = () => {
+    setClicked(true);
     if (value === answer) {
       setTheme('green');
       dispatch({
@@ -68,7 +69,11 @@ const AnswerButton = ({ value, type }) => {
       ? 'right-[10%]'
       : null;
   return (
-    <button className={`h-[178px] relative ${position}`} onClick={handleClick}>
+    <button
+      disabled={clicked}
+      className={`h-[178px] relative ${position}`}
+      onClick={handleClick}
+    >
       <ButtonBorder />
       <p className='text-90 relative bottom-[75%]'>{value}</p>
     </button>
