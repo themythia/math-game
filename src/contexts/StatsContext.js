@@ -19,6 +19,7 @@ const StatsWrapper = ({ children }) => {
     questions: [],
   };
   const [stats, dispatch] = useReducer(statsReducer, initialStats);
+  console.log('stats:', stats);
 
   // sets localStorage on first visit,
   // gets stats from localStorage if visited before

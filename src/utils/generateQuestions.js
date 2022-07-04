@@ -11,9 +11,11 @@ const generateQuestions = () => {
       (first - 1) * second,
       first * (second + 1),
     ];
+
     const question = {
       multipliers: [first, second],
       answers: shuffle(answers),
+      result: null,
     };
     questionsArr.push(question);
   }

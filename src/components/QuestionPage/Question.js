@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactComponent as Stickman } from '../../assets/stickman.svg';
 import { StatsContext } from '../../contexts/StatsContext';
@@ -9,25 +9,30 @@ const Question = () => {
   const { questionId } = useParams();
   const { stats, dispatch } = useContext(StatsContext);
   const { width, height } = useWindowSize();
+  const question = stats.questions[questionId - 1];
+  const answer = question.multipliers[0] * question.multipliers[1];
+
+  const handleTextSize = (width) => {
+    if (width >= 1024 && width < 1300) return 'text-90 bottom-[65%] left-[5%]';
+    else if (width >= 1920) return 'text-128 bottom-[75%] left-[8%]';
+    else if (width >= 1550) return 'text-128 bottom-[73%] left-[5%]';
+    else if (width >= 1300) return 'text-128 bottom-[70%] left-[5%]';
+  };
 
   return (
     <div className='flex flex-row'>
-      <Stickman width={width / 2 || 0} className='max-h-full' />
+      <div className='max-h-screen overflow-hidden'>
+        <Stickman width={width / 2 || 0} className='max-h-full' />
+        <p
+          className={`relative ${handleTextSize(width)}`}
+        >{`${question.multipliers[0]} x ${question.multipliers[1]}`}</p>
+      </div>
       <div className='flex flex-col w-1/2 p-12'>
         <Stats />
         <div className='flex flex-col w-full h-full items-center justify-center'>
-          <AnswerButton
-            type='1'
-            value={stats.questions[questionId - 1].answers[0]}
-          />
-          <AnswerButton
-            type='2'
-            value={stats.questions[questionId - 1].answers[1]}
-          />
-          <AnswerButton
-            type='3'
-            value={stats.questions[questionId - 1].answers[2]}
-          />
+          <AnswerButton type='1' value={question.answers[0]} />
+          <AnswerButton type='2' value={question.answers[1]} />
+          <AnswerButton type='3' value={question.answers[2]} />
         </div>
       </div>
     </div>

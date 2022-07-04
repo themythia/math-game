@@ -1,11 +1,12 @@
 import { createContext, useState } from 'react';
-const ThemeContext = createContext();
+export const ThemeContext = createContext();
 
 const ThemeWrapper = ({ children }) => {
   const [theme, setTheme] = useState('dark');
+  console.log('theme', theme);
 
   return (
-    <ThemeContext.Provider value={setTheme}>
+    <ThemeContext.Provider value={{ setTheme }}>
       <div
         className={`${
           theme === 'dark'
