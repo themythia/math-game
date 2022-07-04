@@ -18,7 +18,6 @@ const statsReducer = (state, action) => {
         questions: generateQuestions(),
       };
     case 'ADD_TRUE':
-      console.log('action.index', action.index);
       return {
         ...state,
         current: {
@@ -36,8 +35,6 @@ const statsReducer = (state, action) => {
         ),
       };
     case 'ADD_FALSE':
-      console.log('action.index', action.index);
-
       return {
         ...state,
         questions: state.questions.map((question, index) =>
@@ -56,6 +53,26 @@ const statsReducer = (state, action) => {
           ...state.current,
           questions: state.current.questions + 1,
         },
+      };
+    case 'UPDATE_TOTAL':
+      return {
+        ...state,
+        total: {
+          score: state.total.score + action.score,
+          questions: state.total.questions + 10,
+          answers: state.total.answers + action.answers,
+        },
+      };
+    case 'RESTART':
+      return {
+        ...state,
+        current: {
+          ...state.current,
+          score: 0,
+          questions: 0,
+          correctAnswers: 0,
+        },
+        questions: [],
       };
 
     default:

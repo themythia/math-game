@@ -11,7 +11,10 @@ const Button = ({ type, text }) => {
     if (type === 'start') {
       dispatch({ type: 'GENERATE_QUESTIONS' });
       navigate('/1');
-    } else if (type === 'final') navigate('/');
+    } else if (type === 'final') {
+      dispatch({ type: 'RESTART' });
+      navigate('/');
+    }
   };
 
   return (
@@ -19,7 +22,7 @@ const Button = ({ type, text }) => {
       className='h-[139px] mt-[66px]'
       onClick={() => handleNavigate(type)}
     >
-      <ButtonBorder className='' />
+      <ButtonBorder />
       <span className='relative text-64 bottom-[112px]'>{text}</span>
     </button>
   );

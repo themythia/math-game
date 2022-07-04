@@ -13,44 +13,6 @@ const AnswerButton = ({ value, type }) => {
   const question = stats.questions[questionId - 1];
   const answer = question.multipliers[0] * question.multipliers[1];
 
-  // useEffect(() => {
-  //   let firstInterval;
-  //   let secondInterval;
-  //   const handleClick = () => {
-  //     if (value === answer) {
-  //       setTheme('green');
-  //       dispatch({
-  //         type: 'ADD_TRUE',
-  //         index: questionId - 1,
-  //         score: Math.ceil(Math.sqrt(answer)),
-  //       });
-  //       firstInterval = window.setTimeout(() => {
-  //         setTheme('dark');
-  //         console.log('interval running');
-  //         if (questionId !== 10) {
-  //           navigate(`/${Number(questionId) + 1}`);
-  //           dispatch({ type: 'INCREASE_QUESTION' });
-  //         } else navigate('/final');
-  //       }, 3000);
-  //     } else {
-  //       setTheme('red');
-  //       dispatch({ type: 'ADD_FALSE', index: questionId - 1 });
-  //       secondInterval = window.setTimeout(() => {
-  //         setTheme('dark');
-  //         if (questionId !== 10) {
-  //           navigate(`/${Number(questionId) + 1}`);
-  //           dispatch({ type: 'INCREASE_QUESTION' });
-  //         } else navigate('/final');
-  //       }, 3000);
-  //     }
-  //   };
-  //   if (clicked) handleClick();
-  //   return () => {
-  //     window.clearTimeout(firstInterval);
-  //     window.clearTimeout(secondInterval);
-  //   };
-  // }, [clicked]);
-
   const handleClick = () => {
     if (value === answer) {
       setTheme('green');
@@ -61,21 +23,38 @@ const AnswerButton = ({ value, type }) => {
       });
       window.setTimeout(() => {
         setTheme('dark');
-        console.log('questionid', questionId);
-        if (questionId !== 10) {
+        if (questionId < 10) {
           navigate(`/${Number(questionId) + 1}`);
           dispatch({ type: 'INCREASE_QUESTION' });
-        } else navigate('/final');
+        } else {
+          dispatch({
+            type: 'UPDATE_TOTAL',
+            score: stats.current.score + Math.ceil(Math.sqrt(answer)),
+            questions: stats.current.questions,
+            answers: stats.current.correctAnswers,
+          });
+
+          navigate('/final');
+        }
       }, 3000);
     } else {
       setTheme('red');
       dispatch({ type: 'ADD_FALSE', index: questionId - 1 });
       window.setTimeout(() => {
         setTheme('dark');
-        if (questionId !== 10) {
+        if (questionId < 10) {
           navigate(`/${Number(questionId) + 1}`);
           dispatch({ type: 'INCREASE_QUESTION' });
-        } else navigate('/final');
+        } else {
+          dispatch({
+            type: 'UPDATE_TOTAL',
+            score: stats.current.score,
+            questions: stats.current.questions,
+            answers: stats.current.correctAnswers,
+          });
+
+          navigate('/final');
+        }
       }, 3000);
     }
   };

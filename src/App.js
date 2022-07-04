@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Final from './components/Final';
+import Final from './components/FinalPage/Final';
 import Question from './components/QuestionPage/Question';
 import Start from './components/StartPage/Start';
 import StatsWrapper from './contexts/StatsContext';

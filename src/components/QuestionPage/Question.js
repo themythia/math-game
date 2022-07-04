@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ReactComponent as Stickman } from '../../assets/stickman.svg';
 import { StatsContext } from '../../contexts/StatsContext';
@@ -11,6 +11,7 @@ const Question = () => {
   const { width, height } = useWindowSize();
   const question = stats.questions[questionId - 1];
   const answer = question.multipliers[0] * question.multipliers[1];
+  console.log('width:', width);
 
   const handleTextSize = (width) => {
     if (width >= 1024 && width < 1300) return 'text-90 bottom-[65%] left-[5%]';
@@ -18,6 +19,10 @@ const Question = () => {
     else if (width >= 1550) return 'text-128 bottom-[73%] left-[5%]';
     else if (width >= 1300) return 'text-128 bottom-[70%] left-[5%]';
   };
+  useEffect(() => {
+    console.log('width: in effetc', width);
+    handleTextSize(width);
+  }, [width]);
 
   return (
     <div className='flex flex-row'>

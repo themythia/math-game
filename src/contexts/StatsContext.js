@@ -20,11 +20,10 @@ const StatsWrapper = ({ children }) => {
   };
   const [stats, dispatch] = useReducer(statsReducer, initialStats);
   console.log('stats:', stats);
-
   // sets localStorage on first visit,
   // gets stats from localStorage if visited before
   useEffect(() => {
-    if (!localStorage.getItem(stats)) {
+    if (Object.keys(JSON.parse(localStorage.getItem('stats'))).length === 0) {
       localStorage.setItem('stats', JSON.stringify(initialStats.total));
     } else
       dispatch({
@@ -36,8 +35,9 @@ const StatsWrapper = ({ children }) => {
 
   // updates localStorage on state change
   useEffect(() => {
-    localStorage.setItem('stats', JSON.stringify(stats.total));
-  }, [stats]);
+    if (stats.total.questions > 0)
+      localStorage.setItem('stats', JSON.stringify(stats.total));
+  }, [stats.total]);
 
   return (
     <StatsContext.Provider value={{ stats, dispatch }}>

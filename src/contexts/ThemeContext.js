@@ -3,7 +3,6 @@ export const ThemeContext = createContext();
 
 const ThemeWrapper = ({ children }) => {
   const [theme, setTheme] = useState('dark');
-  console.log('theme', theme);
 
   return (
     <ThemeContext.Provider value={{ setTheme }}>
