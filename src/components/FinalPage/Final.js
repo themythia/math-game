@@ -8,7 +8,7 @@ import Results from './Results';
 const Final = () => {
   const { stats } = useContext(StatsContext);
   return (
-    <div className='flex flex-row justify-center items-start h-screen p-4'>
+    <div className='flex flex-row justify-center items-start p-4'>
       <div className='flex flex-col  items-center basis-3/5'>
         <Title size='text-82' text='Final' type='final' />
         <ul className='mt-[70px]'>
