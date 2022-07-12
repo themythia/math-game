@@ -8,7 +8,7 @@ const Start = () => {
   const { stats } = useContext(StatsContext);
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
+    <div className='flex flex-col items-center justify-center'>
       <Title size='text-82' text='Mathematics Game' type='start' />
       <ul className='mt-[70px]'>
         <ListItem text='Total Score:' value={stats.total.score} />
