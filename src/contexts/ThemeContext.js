@@ -13,7 +13,7 @@ const ThemeWrapper = ({ children }) => {
             : theme === 'red'
             ? 'bg-customRed'
             : theme === 'green' && 'bg-customGreen'
-        } w-screen text-white font-handlee min-h-screen overflow-y-hidden flex justify-center items-center`}
+        } w-screen text-white font-handlee min-h-screen overflow-hidden flex justify-center items-center`}
       >
         {children}
       </div>

@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { ReactComponent as Stickman } from '../../assets/stickman.svg';
 import { StatsContext } from '../../contexts/StatsContext';
 import useWindowSize from '../../hooks/useWindowSize';
 import Stats from '../StartPage/Stats';
 import AnswerButton from './AnswerButton';
+import Stickman from './Stickman';
 
 const Question = () => {
   const { questionId } = useParams();
@@ -12,14 +12,17 @@ const Question = () => {
   const { width } = useWindowSize();
   const question = stats.questions[questionId - 1];
   const [clicked, setClicked] = useState(false);
-
   useEffect(() => setClicked(false), [questionId]);
 
   return (
-    <div className='flex flex-row'>
-      <div className='max-h-screen overflow-hidden'>
-        <Stickman width={width / 2 || 0} className='max-h-full' />
-        <p className='relative text-90 bottom-[65%] left-[5%] sm:text-128 sm:bottom-[70%] sm:left-[5%] md:text-128 md:bottom-[73%] md:left-[5%] lg:text-128 lg:bottom-[75%] lg:left-[8%]'>{`${question.multipliers[0]} x ${question.multipliers[1]}`}</p>
+    <div className='flex flex-row w-screen h-screen'>
+      <div className='h-full w-1/2 overflow-hidden flex justify-center items-center'>
+        <Stickman
+          width={width / 2 || 0}
+          height={width / 2 || 0}
+          className='max-h-full'
+        />
+        <p className='absolute text-90 bottom-[57%] left-[3%] sm:text-128'>{`${question.multipliers[0]} x ${question.multipliers[1]}`}</p>
       </div>
       <div className='flex flex-col w-1/2 p-12'>
         <Stats />
